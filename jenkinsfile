@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Chekout') {
             steps {
-	    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/emnou9/khalfa.git']]])
+	    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/elyes97/RepoTest.git']]])
         echo 'Building..'        
 	}  
 	}
@@ -22,8 +22,7 @@ pipeline {
             }
         }
         stage('Deploy') {
-            steps { 
-	    bat label: '', script: 'mvn deploy'
+            steps {
                 echo 'Deploying....'
             }
         }
