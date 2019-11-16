@@ -4,16 +4,20 @@ pipeline {
     stages {
         stage('Chekout') {
             steps {
+	    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/elyes97/RepoTest.git']]])
         echo 'Building..'        
 	}  
 	}
         stage('Build') {
             steps {
+	    bat label: '', script: 'mvn install'
                 echo 'Building..'
             }
         }
         stage('Test') {
             steps {
+	    bat label: '', script: '''mvn test
+'''
                 echo 'Testing..'
             }
         }
