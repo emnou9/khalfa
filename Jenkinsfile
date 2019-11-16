@@ -2,10 +2,18 @@ pipeline {
    agent any
 
     stages {
+
         stage('Chekout') {
+
             steps {
-        echo 'Building..'        
-	}  
+
+	    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/elyes97/RepoTest.git']]])
+
+        echo 'Building..'  
+
+
+
+	} 
 	}
         stage('Build') {
             steps {
